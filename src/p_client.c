@@ -1247,7 +1247,7 @@ deathmatch mode, so clear everything out before starting them.
 =====================
 */
 
-
+/*															ORIginal client begin deathmatch
 void ClientBeginDeathmatch (edict_t *ent)
 {
 	G_InitEdict (ent);
@@ -1275,8 +1275,57 @@ void ClientBeginDeathmatch (edict_t *ent)
 
 	// make sure all view stuff is valid
 	ClientEndServerFrame (ent);
-}
+}*/
 
+//motd client deathmatch
+
+void ClientBeginDeathmatch (edict_t *ent)
+{
+	// STEVE added these 3 local variables
+	FILE *motd_file;
+	char motd[500];
+	char line[80];
+
+	G_InitEdict (ent);
+
+	InitClientResp (ent->client);
+
+	// locate ent at a spawn point
+	PutClientInServer (ent);
+
+	// send effect
+	gi.WriteByte (svc_muzzleflash);
+	gi.WriteShort (ent-g_edicts);
+	gi.WriteByte (MZ_LOGIN);
+	gi.multicast (ent->s.origin, MULTICAST_PVS);
+
+	gi.bprintf (PRINT_HIGH, "%s entered the game\n", ent->client->pers.netname);
+
+	// STEVE changed this bit : read the motd from a file
+	if (motd_file = fopen("motd.txt", "r"))
+	{
+		// we successfully opened the file "motd.txt"
+		if ( fgets(motd, 500, motd_file) )
+		{
+			// we successfully read a line from "motd.txt" into motd
+			// ... read the remaining lines now
+			while ( fgets(line, 80, motd_file) )
+			{
+				// add each new line to motd, to create a BIG message string.
+				// we are using strcat: STRing conCATenation function here.
+				strcat(motd, line);
+			}
+
+			// print our message.
+			gi.centerprintf (ent, motd);
+		}
+		// be good now ! ... close the file
+		fclose(motd_file);
+	}
+
+	// make sure all view stuff is valid
+	ClientEndServerFrame (ent);
+}
 
 /*
 ===========
