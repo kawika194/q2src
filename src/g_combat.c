@@ -174,6 +174,7 @@ static int CheckPowerArmor (edict_t *ent, vec3_t point, vec3_t normal, int damag
 		if (power_armor_type != POWER_ARMOR_NONE)
 		{
 			index = ITEM_INDEX(FindItem("Cells"));
+			//index = ITEM_INDEX(FindItem("mana"));
 			power = client->pers.inventory[index];
 		}
 	}

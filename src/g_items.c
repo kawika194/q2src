@@ -274,6 +274,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 	}
 
 	item = FindItem("Cells");
+	//item = FindItem("mana");										//DO NOT CHANGE THESE FOR THE LOVE OF ALL THAT IS UNHOLY
 	if (item)
 	{
 		index = ITEM_INDEX(item);
@@ -1203,7 +1204,7 @@ gitem_t	itemlist[] =
 		"models/items/armor/shard/tris.md2", EF_ROTATE,
 		NULL,
 /* icon */		"i_jacketarmor",
-/* pickup */	"Armor Shard",
+/* pickup */	"Armor Shard ",
 /* width */		3,
 		0,
 		NULL,
@@ -1271,9 +1272,9 @@ always owned, never in the world
 */
 	{
 		"weapon_blaster", 
-		NULL,
+		NULL, //pickup ammo/weapon
 		Use_Weapon,
-		NULL,
+		NULL, //drop ammo/weapon
 		Weapon_Blaster,
 		"misc/w_pkup.wav",
 		NULL, 0,
@@ -1466,7 +1467,8 @@ always owned, never in the world
 /* pickup */	"HyperBlaster",
 		0,
 		1,
-		"Cells",
+		//"Cells",
+		"mana",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_HYPERBLASTER,
 		NULL,
@@ -1487,7 +1489,7 @@ always owned, never in the world
 		"models/weapons/v_rail/tris.md2",
 /* icon */		"w_railgun",
 /* pickup */	"Railgun",
-		0,
+		0,//ammo amount?
 		1,
 		"Slugs",
 		IT_WEAPON|IT_STAY_COOP,
@@ -1510,9 +1512,10 @@ always owned, never in the world
 		"models/weapons/v_bfg/tris.md2",
 /* icon */		"w_bfg",
 /* pickup */	"BFG10K",
-		0,
-		50,
-		"Cells",
+		0, //ammo amount?
+		50, 
+		//"Cells",
+		"mana",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_BFG,
 		NULL,
@@ -1524,7 +1527,7 @@ always owned, never in the world
 	// AMMO ITEMS
 	//
 
-/*QUAKED ammo_shells (.3 .3 1) (-16 -16 -16) (16 16 16)
+/*QUAKED ammo_shells (.3 .3 1) (-16 -16 -16) (16 16 16) this is where ammo starts?
 */
 	{
 		"ammo_shells",
@@ -1538,7 +1541,7 @@ always owned, never in the world
 /* icon */		"a_shells",
 /* pickup */	"Shells",
 /* width */		3,
-		10,
+		10, //ammo amount
 		NULL,
 		IT_AMMO,
 		0,
@@ -1561,7 +1564,7 @@ always owned, never in the world
 /* icon */		"a_bullets",
 /* pickup */	"Bullets",
 /* width */		3,
-		50,
+		50, //ammo amount
 		NULL,
 		IT_AMMO,
 		0,
@@ -1582,9 +1585,10 @@ always owned, never in the world
 		"models/items/ammo/cells/medium/tris.md2", 0,
 		NULL,
 /* icon */		"a_cells",
-/* pickup */	"Cells",
+/* pickup */	//"Cells",
+				"mana",
 /* width */		3,
-		50,
+		50, //ammo amount
 		NULL,
 		IT_AMMO,
 		0,
@@ -1607,7 +1611,7 @@ always owned, never in the world
 /* icon */		"a_rockets",
 /* pickup */	"Rockets",
 /* width */		3,
-		5,
+		5, //ammo amount
 		NULL,
 		IT_AMMO,
 		0,
@@ -1630,7 +1634,7 @@ always owned, never in the world
 /* icon */		"a_slugs",
 /* pickup */	"Slugs",
 /* width */		3,
-		10,
+		10, //ammo amount
 		NULL,
 		IT_AMMO,
 		0,
