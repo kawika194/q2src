@@ -79,12 +79,12 @@ typedef enum
 
 typedef enum
 {
-	AMMO_BULLETS,
+	AMMO_BULLETS, //tiny mana
 	AMMO_SHELLS, //compressed mana
 	AMMO_ROCKETS, //bulk mana
 	AMMO_GRENADES, //unstable mana
 	AMMO_CELLS, //hyped up mana
-	AMMO_SLUGS,		//added comma here
+	AMMO_SLUGS,		//heavy mana
 	AMMO_MANA		//added this line
 } ammo_t;
 

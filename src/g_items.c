@@ -274,7 +274,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 	}
 
 	item = FindItem("Cells");
-	//item = FindItem("mana");										//DO NOT CHANGE THESE FOR THE LOVE OF ALL THAT IS UNHOLY
+	//item = FindItem("mana");					//DO NOT CHANGE THESE FOR THE LOVE OF ALL THAT IS UNHOLY (crashes when you reach 0 ammo)
 	if (item)
 	{
 		index = ITEM_INDEX(item);
@@ -1306,7 +1306,7 @@ always owned, never in the world
 /* pickup */	"Shotgun",
 		0,
 		1,
-		"Shells",
+		"compressed mana",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_SHOTGUN,
 		NULL,
@@ -1329,7 +1329,7 @@ always owned, never in the world
 /* pickup */	"Super Shotgun",
 		0,
 		2,
-		"Shells",
+		"compressed mana",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_SUPERSHOTGUN,
 		NULL,
@@ -1352,7 +1352,7 @@ always owned, never in the world
 /* pickup */	"Machinegun",
 		0,
 		1,
-		"Bullets",
+		"tiny mana",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_MACHINEGUN,
 		NULL,
@@ -1375,7 +1375,7 @@ always owned, never in the world
 /* pickup */	"Chaingun",
 		0,
 		1,
-		"Bullets",
+		"tiny mana",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_CHAINGUN,
 		NULL,
@@ -1395,7 +1395,7 @@ always owned, never in the world
 		"models/items/ammo/grenades/medium/tris.md2", 0,
 		"models/weapons/v_handgr/tris.md2",
 /* icon */		"a_grenades",
-/* pickup */	"Grenades",
+/* pickup */	"unstable mana",
 /* width */		3,
 		5,
 		"grenades",
@@ -1421,7 +1421,7 @@ always owned, never in the world
 /* pickup */	"Grenade Launcher",
 		0,
 		1,
-		"Grenades",
+		"unstable mana",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_GRENADELAUNCHER,
 		NULL,
@@ -1444,7 +1444,7 @@ always owned, never in the world
 /* pickup */	"Rocket Launcher",
 		0,
 		1,
-		"Rockets",
+		"bulk mana",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_ROCKETLAUNCHER,
 		NULL,
@@ -1491,7 +1491,7 @@ always owned, never in the world
 /* pickup */	"Railgun",
 		0,//ammo amount?
 		1,
-		"Slugs",
+		"heavy mana",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_RAILGUN,
 		NULL,
@@ -1539,7 +1539,7 @@ always owned, never in the world
 		"models/items/ammo/shells/medium/tris.md2", 0,
 		NULL,
 /* icon */		"a_shells",
-/* pickup */	"Shells",
+/* pickup */	"compressed mana",
 /* width */		3,
 		10, //ammo amount
 		NULL,
@@ -1562,7 +1562,7 @@ always owned, never in the world
 		"models/items/ammo/bullets/medium/tris.md2", 0,
 		NULL,
 /* icon */		"a_bullets",
-/* pickup */	"Bullets",
+/* pickup */	"tiny mana",
 /* width */		3,
 		50, //ammo amount
 		NULL,
@@ -1609,7 +1609,7 @@ always owned, never in the world
 		"models/items/ammo/rockets/medium/tris.md2", 0,
 		NULL,
 /* icon */		"a_rockets",
-/* pickup */	"Rockets",
+/* pickup */	"bulk mana",
 /* width */		3,
 		5, //ammo amount
 		NULL,
@@ -1632,7 +1632,7 @@ always owned, never in the world
 		"models/items/ammo/slugs/medium/tris.md2", 0,
 		NULL,
 /* icon */		"a_slugs",
-/* pickup */	"Slugs",
+/* pickup */	"heavy mana",
 /* width */		3,
 		10, //ammo amount
 		NULL,
