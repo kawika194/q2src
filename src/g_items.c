@@ -1303,7 +1303,7 @@ always owned, never in the world
 		"models/weapons/g_shotg/tris.md2", EF_ROTATE,
 		"models/weapons/v_shotg/tris.md2",
 /* icon */		"w_shotgun",
-/* pickup */	"Shotgun",
+/* pickup */	"CompressMagic",
 		0,
 		1,
 		"CompressedMana",
@@ -1326,7 +1326,7 @@ always owned, never in the world
 		"models/weapons/g_shotg2/tris.md2", EF_ROTATE,
 		"models/weapons/v_shotg2/tris.md2",
 /* icon */		"w_sshotgun",
-/* pickup */	"Super Shotgun",
+/* pickup */	"SuperCompressMagic",
 		0,
 		2,
 		"CompressedMana",
@@ -1349,7 +1349,7 @@ always owned, never in the world
 		"models/weapons/g_machn/tris.md2", EF_ROTATE,
 		"models/weapons/v_machn/tris.md2",
 /* icon */		"w_machinegun",
-/* pickup */	"Machinegun",
+/* pickup */	"BasicMagic",
 		0,
 		1,
 		"TinyMana",
@@ -1372,7 +1372,7 @@ always owned, never in the world
 		"models/weapons/g_chain/tris.md2", EF_ROTATE,
 		"models/weapons/v_chain/tris.md2",
 /* icon */		"w_chaingun",
-/* pickup */	"Chaingun",
+/* pickup */	"RataMagic",
 		0,
 		1,
 		"TinyMana",
@@ -1395,10 +1395,10 @@ always owned, never in the world
 		"models/items/ammo/grenades/medium/tris.md2", 0,
 		"models/weapons/v_handgr/tris.md2",
 /* icon */		"a_grenades",
-/* pickup */	"UnstableMana",
+/* pickup */	"ProxiMagic",
 /* width */		3,
-		5,
-		"UnstableMana",
+		25,
+		"ProxiMagic",
 		IT_AMMO|IT_WEAPON,
 		WEAP_GRENADES,
 		NULL,
@@ -1418,10 +1418,10 @@ always owned, never in the world
 		"models/weapons/g_launch/tris.md2", EF_ROTATE,
 		"models/weapons/v_launch/tris.md2",
 /* icon */		"w_glauncher",
-/* pickup */	"Grenade Launcher",
+/* pickup */	"SilentProxi",
 		0,
 		1,
-		"UnstableMana",
+		"ProxiMagic",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_GRENADELAUNCHER,
 		NULL,
@@ -1441,7 +1441,7 @@ always owned, never in the world
 		"models/weapons/g_rocket/tris.md2", EF_ROTATE,
 		"models/weapons/v_rocket/tris.md2",
 /* icon */		"w_rlauncher",
-/* pickup */	"Rocket Launcher",
+/* pickup */	"Forbidden",
 		0,
 		1,
 		"BulkMana",
@@ -1464,7 +1464,7 @@ always owned, never in the world
 		"models/weapons/g_hyperb/tris.md2", EF_ROTATE,
 		"models/weapons/v_hyperb/tris.md2",
 /* icon */		"w_hyperblaster",
-/* pickup */	"HyperBlaster",
+/* pickup */	"Holes",
 		0,
 		1,
 		//"Cells",
@@ -1488,7 +1488,7 @@ always owned, never in the world
 		"models/weapons/g_rail/tris.md2", EF_ROTATE,
 		"models/weapons/v_rail/tris.md2",
 /* icon */		"w_railgun",
-/* pickup */	"Railgun",
+/* pickup */	"Swirls",
 		0,//ammo amount?
 		1,
 		"HeavyMana",
@@ -1511,7 +1511,7 @@ always owned, never in the world
 		"models/weapons/g_bfg/tris.md2", EF_ROTATE,
 		"models/weapons/v_bfg/tris.md2",
 /* icon */		"w_bfg",
-/* pickup */	"BFG10K",
+/* pickup */	"lawdy",
 		0, //ammo amount?
 		50, 
 		//"Cells",
@@ -1530,7 +1530,8 @@ always owned, never in the world
 /*QUAKED ammo_shells (.3 .3 1) (-16 -16 -16) (16 16 16) this is where ammo starts?
 */
 	{
-		"ammo_shells",
+		"d", //this is me making ammo dissapear from maps
+		//"ammo_shells",
 		Pickup_Ammo,
 		NULL,
 		Drop_Ammo,
@@ -1541,7 +1542,7 @@ always owned, never in the world
 /* icon */		"a_shells",
 /* pickup */	"CompressedMana",
 /* width */		3,
-		10, //ammo amount
+		40, //ammo amount
 		NULL,
 		IT_AMMO,
 		0,
@@ -1553,7 +1554,8 @@ always owned, never in the world
 /*QUAKED ammo_bullets (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 	{
-		"ammo_bullets",
+		"d",
+		//"ammo_bullets",
 		Pickup_Ammo,
 		NULL,
 		Drop_Ammo,
@@ -1564,7 +1566,7 @@ always owned, never in the world
 /* icon */		"a_bullets",
 /* pickup */	"TinyMana",
 /* width */		3,
-		50, //ammo amount
+		90, //ammo amount
 		NULL,
 		IT_AMMO,
 		0,
@@ -1576,7 +1578,8 @@ always owned, never in the world
 /*QUAKED ammo_cells (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 	{
-		"ammo_cells",
+		"d",
+		//"ammo_cells",
 		Pickup_Ammo,
 		NULL,
 		Drop_Ammo,
@@ -1588,7 +1591,7 @@ always owned, never in the world
 /* pickup */	//"Cells",
 				"HyperactiveMana",
 /* width */		3,
-		50, //ammo amount
+		100, //ammo amount
 		NULL,
 		IT_AMMO,
 		0,
@@ -1600,7 +1603,8 @@ always owned, never in the world
 /*QUAKED ammo_rockets (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 	{
-		"ammo_rockets",
+		"d",
+		//"ammo_rockets",
 		Pickup_Ammo,
 		NULL,
 		Drop_Ammo,
@@ -1611,7 +1615,7 @@ always owned, never in the world
 /* icon */		"a_rockets",
 /* pickup */	"BulkMana",
 /* width */		3,
-		5, //ammo amount
+		25, //ammo amount
 		NULL,
 		IT_AMMO,
 		0,
@@ -1623,7 +1627,8 @@ always owned, never in the world
 /*QUAKED ammo_slugs (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 	{
-		"ammo_slugs",
+		"d",
+		//"ammo_slugs",
 		Pickup_Ammo,
 		NULL,
 		Drop_Ammo,
@@ -1634,7 +1639,7 @@ always owned, never in the world
 /* icon */		"a_slugs",
 /* pickup */	"HeavyMana",
 /* width */		3,
-		10, //ammo amount
+		30, //ammo amount
 		NULL,
 		IT_AMMO,
 		0,
