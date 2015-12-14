@@ -1716,7 +1716,12 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 			VectorCopy (pm.viewangles, client->v_angle);
 			VectorCopy (pm.viewangles, client->ps.viewangles);
 		}
-
+		//custom line below
+		/*if (ucmd->forwardmove != 0 ||  ucmd->sidemove  != 0 && ent->svflags & SVF_NOCLIENT)
+		{
+			ent->svflags &= ~SVF_NOCLIENT;
+		}
+		*///end of custom
 		gi.linkentity (ent);
 
 		if (ent->movetype != MOVETYPE_NOCLIP)

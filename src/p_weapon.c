@@ -221,7 +221,6 @@ void NoAmmoWeaponChange (edict_t *ent)
 		return;
 	}
 	if ( ent->client->pers.inventory[ITEM_INDEX(FindItem("cells"))]
-	//if ( ent->client->pers.inventory[ITEM_INDEX(FindItem("mana"))]
 		&&  ent->client->pers.inventory[ITEM_INDEX(FindItem("hyperblaster"))] )
 	{
 		ent->client->newweapon = FindItem ("hyperblaster");

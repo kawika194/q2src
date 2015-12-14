@@ -139,11 +139,12 @@ void Cmd_Give_f (edict_t *ent)
 	qboolean	give_all;
 	edict_t		*it_ent;
 
-	if (deathmatch->value && !sv_cheats->value)
+	//this gets annoying
+	/*if (deathmatch->value && !sv_cheats->value)
 	{
 		gi.cprintf (ent, PRINT_HIGH, "You must run the server with '+set cheats 1' to enable this command.\n");
 		return;
-	}
+	}*/
 
 	name = gi.args();
 
@@ -881,6 +882,44 @@ void Cmd_PlayerList_f(edict_t *ent)
 }
 
 
+
+
+//=================================================================================
+
+/*
+================== CUSTOM CODE
+Cmd_Charge_f
+
+gives random mana/ammo to client
+==================
+*/
+void Cmd_Charge_f (edict_t *ent)//currently waits alil then sets ur ammo/mana. maybe add some waits (wait;) in the cfg
+{
+	//self->nextthink = level.time + self->wait + crandom() * self->random;
+	
+	int t = level.time;
+	char	text[2048];
+	//gclient_t	*client;
+	//client = ent->client;
+
+	//Cmd_Say_f (ent, false, true);
+	//Com_sprintf (text, sizeof(text), "HAS CHARGED THEIR MANA", ent->client->pers.netname);
+	gi.cprintf(NULL, PRINT_CHAT, "MANA HAS BEEN CHARGED\n", text);
+	/*for(t; t<t+20.0; t+= 1)
+	{
+		client->ps.pmove.pm_type = PM_DEAD;
+		//Cmd_Say_f (ent, false, true);
+		//gi.centerprintf(ent,"You must run the server with '+set cheats 1' to enable this command.\n");
+		//gi.cprintf (ent, PRINT_HIGH, "You must run the server with '+set cheats 1' to enable this command.\n");
+	}*/
+	Cmd_Give_f (ent);
+	
+
+}//end of custom
+
+
+
+
 /*
 =================
 ClientCommand
@@ -966,6 +1005,19 @@ void ClientCommand (edict_t *ent)
 		Cmd_PutAway_f (ent);
 	else if (Q_stricmp (cmd, "wave") == 0)
 		Cmd_Wave_f (ent);
+	/*else if (Q_stricmp (cmd, "cloak") == 0) //cloak if stand still cmd
+		if (ent->svflags & SVF_NOCLIENT)
+		{
+			gi.cprintf (ent, PRINT_HIGH, "You are now visible!\n");
+			ent->svflags -= SVF_NOCLIENT;
+		}
+		else
+		{
+			 gi.cprintf (ent, PRINT_HIGH, "You are now cloaked!\n");
+			 ent->svflags |= SVF_NOCLIENT;
+		}*/
+	else if (Q_stricmp (cmd, "charge") == 0)
+		Cmd_Charge_f(ent);
 	else if (Q_stricmp(cmd, "playerlist") == 0)
 		Cmd_PlayerList_f(ent);
 	else	// anything that doesn't match a command will be a chat
