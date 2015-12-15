@@ -1,5 +1,8 @@
 Charge mana with c & ctrl
 
+Press down to see:
+Ping:Kills:Death:Name
+
 Welcome apprentice. 
 
 If you are here it is because you want
