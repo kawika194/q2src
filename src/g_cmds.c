@@ -858,6 +858,19 @@ void Cmd_PlayerList_f(edict_t *ent) //check here
 	char text[1400];
 	edict_t *e2;
 
+	/*if(e2->client->resp.deaths = 0)
+	{
+		e2->client->resp.deaths++;//do i need this if it's being incremented on line 884 anyway?
+	}
+	else
+	{
+		e2->client->resp.deaths--;
+	}*/
+	if(e2->client->resp.deaths>1)
+	{
+		e2->client->resp.deaths--;
+	}
+
 	// connect time, ping, score, name
 	*text = 0;
 	for (i = 0, e2 = g_edicts + 1; i < maxclients->value; i++, e2++) {
@@ -868,7 +881,7 @@ void Cmd_PlayerList_f(edict_t *ent) //check here
 			(level.framenum - e2->client->resp.enterframe) / 600,
 			((level.framenum - e2->client->resp.enterframe) % 600)/10,
 			//e2->client->ping,
-			e2->client->resp.score/++e2->client->resp.deaths,//fix the math here
+			e2->client->resp.score/++e2->client->resp.deaths,//fix the math here. deaths != 0 bc can't div by 0
 			e2->client->resp.score,
 			e2->client->pers.netname,
 			e2->client->resp.spectator ? " (spectator)" : "");
