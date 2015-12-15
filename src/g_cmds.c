@@ -851,7 +851,7 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
 	}
 }
 
-void Cmd_PlayerList_f(edict_t *ent)
+void Cmd_PlayerList_f(edict_t *ent) //check here
 {
 	int i;
 	char st[80];
@@ -867,7 +867,8 @@ void Cmd_PlayerList_f(edict_t *ent)
 		Com_sprintf(st, sizeof(st), "%02d:%02d %4d %3d %s%s\n",
 			(level.framenum - e2->client->resp.enterframe) / 600,
 			((level.framenum - e2->client->resp.enterframe) % 600)/10,
-			e2->client->ping,
+			//e2->client->ping,
+			e2->client->resp.score/++e2->client->resp.deaths,//fix the math here
 			e2->client->resp.score,
 			e2->client->pers.netname,
 			e2->client->resp.spectator ? " (spectator)" : "");
@@ -904,7 +905,9 @@ void Cmd_Charge_f (edict_t *ent)//currently waits alil then sets ur ammo/mana. m
 
 	//Cmd_Say_f (ent, false, true);
 	//Com_sprintf (text, sizeof(text), "HAS CHARGED THEIR MANA", ent->client->pers.netname);
-	gi.cprintf(NULL, PRINT_CHAT, "MANA HAS BEEN CHARGED\n", text);
+	
+	gi.cprintf(NULL, PRINT_CHAT, "MANA HAS BEEN CHARGED\n", text); //lot of spam
+
 	/*for(t; t<t+20.0; t+= 1)
 	{
 		client->ps.pmove.pm_type = PM_DEAD;

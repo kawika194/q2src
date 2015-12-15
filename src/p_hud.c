@@ -180,6 +180,21 @@ void DeathmatchScoreboardMessage (edict_t *ent, edict_t *killer)
 		total++;
 	}
 
+	//custom, making header for the data
+	/*Com_sprintf(entry, sizeof(entry),
+		"xv 32 yv 16 string2 \"Player\" " 
+		"xv 168 yv 16 string2 \"Frags\" " 
+		"xv 216 yv 16 string2 \"Ping\" " 
+		"xv 256 yv 16 string2 \"Time\" " 
+		"xv 32 yv 24 string2 \"--------------------------------\" ");
+	j = strlen(entry); 
+	if (stringlength + j < 1024) 
+	{
+		strcpy (string + stringlength, entry); 
+		stringlength += j;
+	}*///ecustom
+
+
 	// print level name and exit rules
 	string[0] = 0;
 
@@ -188,6 +203,9 @@ void DeathmatchScoreboardMessage (edict_t *ent, edict_t *killer)
 	// add the clients in sorted order
 	if (total > 12)
 		total = 12;
+	//increased clients in order
+	//if (total > 25)
+	//	total = 25;
 
 	for (i=0 ; i<total ; i++)
 	{
@@ -195,16 +213,32 @@ void DeathmatchScoreboardMessage (edict_t *ent, edict_t *killer)
 		cl_ent = g_edicts + 1 + sorted[i];
 
 		picnum = gi.imageindex ("i_fixme");
-		x = (i>=6) ? 160 : 0;
-		y = 32 + 32 * (i%6);
+		//x = (i>=6) ? 160 : 0;
+		//y = 32 + 32 * (i%6);
+		x=32;
+		y = 32 + 8 * i;
+
 
 		// add a dogtag
 		if (cl_ent == ent)
 			tag = "tag1";
+			//tag = "-->";
 		else if (cl_ent == killer)
 			tag = "tag2";
+			//tag = "-X>";
 		else
 			tag = NULL;
+		/*if (tag) 
+		{
+			Com_sprintf (entry, sizeof(entry),
+				"xv 8 yv %i string \"%s\" ", y, tag); 
+				j = strlen(entry); 
+				if (stringlength + j > 1024)
+					break;
+				strcpy (string + stringlength, entry); 
+				stringlength += j;
+		}*/
+		
 		if (tag)
 		{
 			Com_sprintf (entry, sizeof(entry),
@@ -225,9 +259,19 @@ void DeathmatchScoreboardMessage (edict_t *ent, edict_t *killer)
 		4. score 
 		5. ping 
 		6. time (in minutes) in the map*/
+
+		//send layout 
 		Com_sprintf (entry, sizeof(entry),
 			"client %i %i %i %i %i %i ",
+			//x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe)/600);
 			x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe)/600);
+		/*Com_sprintf(entry, sizeof(entry),
+			"xv 32 yv %i string2 \"%s\" " 
+			"xv 152 yv %i string \"%3i %3i %3i\" ", 
+			y, cl->pers.netname, 
+			y, cl->resp.score, 
+			cl->ping, 
+			(level.framenum - cl->resp.enterframe)/600);*/
 		j = strlen(entry);
 		if (stringlength + j > 1024)
 			break;

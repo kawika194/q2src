@@ -84,7 +84,7 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 		{
 			level.killed_monsters++;
 			if (coop->value && attacker->client)
-				attacker->client->resp.score++;
+				attacker->client->resp.score++;			///where score gets incremented for killing
 			// medics won't heal monsters that they kill themselves
 			if (strcmp(attacker->classname, "monster_medic") == 0)
 				targ->owner = attacker;

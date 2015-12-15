@@ -196,6 +196,9 @@ void ClientObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 	char		*message2;
 	qboolean	ff;
 
+	//self->client->resp.deaths = 0;
+	//self->client->resp.kdr = 0;
+
 	if (coop->value && attacker->client)
 		meansOfDeath |= MOD_FRIENDLY_FIRE;
 
@@ -286,7 +289,8 @@ void ClientObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 		{
 			gi.bprintf (PRINT_MEDIUM, "%s %s.\n", self->client->pers.netname, message);
 			if (deathmatch->value)
-				self->client->resp.score--;
+				//self->client->resp.score--;//-1 for killing urself
+				self->client->resp.deaths++;
 			self->enemy = NULL;
 			return;
 		}
@@ -371,9 +375,10 @@ void ClientObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 				if (deathmatch->value)
 				{
 					if (ff)
-						attacker->client->resp.score--;
+						//attacker->client->resp.score--;//-1 score for killing yourself
+						attacker->client->resp.deaths++;
 					else
-						attacker->client->resp.score++;
+						attacker->client->resp.score++;//+1 score for killing yourself
 				}
 				return;
 			}
@@ -382,7 +387,8 @@ void ClientObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 
 	gi.bprintf (PRINT_MEDIUM,"%s died.\n", self->client->pers.netname);
 	if (deathmatch->value)
-		self->client->resp.score--;
+		//self->client->resp.score--;
+		self->client->resp.deaths++;
 }
 
 
@@ -1037,8 +1043,12 @@ void spectator_respawn (edict_t *ent)
 		}
 	}
 
+	//ADDED CUSTOM CLEAR for kdr and deaths
 	// clear client on respawn
 	ent->client->resp.score = ent->client->pers.score = 0;
+	//ent->client->resp.kdr = ent->client->pers.kdr = 0;
+	ent->client->resp.deaths = ent->client->pers.deaths = 0;
+	
 
 	ent->svflags &= ~SVF_NOCLIENT;
 	PutClientInServer (ent);
@@ -1121,7 +1131,7 @@ void PutClientInServer (edict_t *ent)
 		resp.coop_respawn.helpchanged = client->pers.helpchanged;
 		client->pers = resp.coop_respawn;
 		ClientUserinfoChanged (ent, userinfo);
-		if (resp.score > client->pers.score)
+		if (resp.score > client->pers.score)//not touching for now non custom
 			client->pers.score = resp.score;
 	}
 	else
