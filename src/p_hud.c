@@ -83,7 +83,7 @@ void BeginIntermission (edict_t *targ)
 				client = g_edicts + 1 + i;
 				if (!client->inuse)
 					continue;
-				// strip players of all keys between units
+				// strip players of all keys between units USEFUL
 				for (n = 0; n < MAX_ITEMS; n++)
 				{
 					if (itemlist[n].flags & IT_KEY)
@@ -217,6 +217,14 @@ void DeathmatchScoreboardMessage (edict_t *ent, edict_t *killer)
 		}
 
 		// send the layout
+		//"client [int][int][int][int][int][int]"
+		/*All the integers:
+		1. x-value	(bottom left) 
+		2. y-value 
+		3. player number 
+		4. score 
+		5. ping 
+		6. time (in minutes) in the map*/
 		Com_sprintf (entry, sizeof(entry),
 			"client %i %i %i %i %i %i ",
 			x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe)/600);
