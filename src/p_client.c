@@ -377,8 +377,10 @@ void ClientObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 					if (ff)
 						//attacker->client->resp.score--;//-1 score for killing yourself
 						attacker->client->resp.deaths++;
+
 					else
 						attacker->client->resp.score++;//+1 score for killing yourself
+						self->client->resp.deaths++;// +1 death for dying
 				}
 				return;
 			}
