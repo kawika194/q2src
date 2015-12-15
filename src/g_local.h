@@ -841,7 +841,7 @@ typedef struct
 
 	int			power_cubes;	// used for tracking the cubes in coop games
 	int			score;			// for calculating total unit score in coop games
-	int			kdr;			// CUSTOM KDR PERSISTENT
+	//int			kdr;			// CUSTOM KDR PERSISTENT
 	int			deaths;			// CUSTOM DEATHS PERSISTENT
 
 	int			game_helpchanged;
@@ -856,7 +856,7 @@ typedef struct
 	client_persistant_t	coop_respawn;	// what to set client->pers to on a respawn
 	int			enterframe;			// level.framenum the client entered the game
 	int			score;				// frags, etc
-	int			kdr;				//custom kdr
+	//int			kdr;				//custom kdr
 	int			deaths;				//so kdr = score/deaths
 	vec3_t		cmd_angles;			// angles sent over in the last command
 

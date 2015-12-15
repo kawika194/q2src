@@ -866,23 +866,28 @@ void Cmd_PlayerList_f(edict_t *ent) //check here
 	{
 		e2->client->resp.deaths--;
 	}*/
-	if(e2->client->resp.deaths>1)
+	// if i just have this if statement then it'll crash so im assuming it drops it back to 0;
+	/*if(e2->client->resp.deaths>2)
 	{
 		e2->client->resp.deaths--;
-	}
+		return;
+	}*/
 
 	// connect time, ping, score, name
+	//ping, score/kills, deaths, name
 	*text = 0;
 	for (i = 0, e2 = g_edicts + 1; i < maxclients->value; i++, e2++) {
 		if (!e2->inuse)
 			continue;
 
-		Com_sprintf(st, sizeof(st), "%02d:%02d %4d %3d %s%s\n",
-			(level.framenum - e2->client->resp.enterframe) / 600,
-			((level.framenum - e2->client->resp.enterframe) % 600)/10,
-			//e2->client->ping,
-			e2->client->resp.score/++e2->client->resp.deaths,//fix the math here. deaths != 0 bc can't div by 0
+		//Com_sprintf(st, sizeof(st), "%02d:%02d %4d %3d %s%s\n",
+		Com_sprintf(st, sizeof(st), "%4d %3d %3d %s%s\n",
+			//(level.framenum - e2->client->resp.enterframe) / 600,
+			//((level.framenum - e2->client->resp.enterframe) % 600)/10,
+			e2->client->ping,
+			//e2->client->resp.score / ++e2->client->resp.deaths,//fix the math here. deaths != 0 bc can't div by 0
 			e2->client->resp.score,
+			e2->client->resp.deaths,
 			e2->client->pers.netname,
 			e2->client->resp.spectator ? " (spectator)" : "");
 		if (strlen(text) + strlen(st) > sizeof(text) - 50) {
